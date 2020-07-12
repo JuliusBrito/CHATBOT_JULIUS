@@ -6,9 +6,9 @@ import datetime
 meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho',
          'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'] #lista de meses para troca
 hora = datetime.datetime.now()
-
 a = hora.date()
-lista = []
+
+lista = [] # Criação de lista para mudar os meses
 lista.append(a)
 listastr = str(lista)
 
@@ -17,16 +17,17 @@ mes = listastr[21:22]
 ano = listastr[15:19]
 
 mesint = int(mes)
-
 mes_palavra = meses[mesint]
+
 z = dia, meses[mesint - 1],ano
 resp_dia = z[0]
 resp_hora = str(datetime.time(hora.hour, hora.minute, hora.second))
 resp_mes = mesint
 resp_ano = ano
+# ---- Final datetime ----
 
-
-bot = ChatBot('JULIUS: ')
+# ---- Inicio do CHATBOT ----
+bot = ChatBot('JULIUS: ') # Nome do CHATBOT
 
 conversa1 = ['Oi', 'Olá', 'Tudo bem?', 'Tudo ótimo!',
             'Você gosta de programar?', 'Sim', 'Qual linguagem você usa?', 'Eu programo em Python!',
@@ -39,7 +40,7 @@ conversa4 = ['Que dia é hoje?', 'Hoje é dia ' + resp_dia]
 conversa5 = ['Que mês estamos?', 'Estamos em ' + mes_palavra]
 conversa6 = ['Que ano estamos?', 'Estamos em ' + resp_ano]
 
-bot.set_trainer(ListTrainer)
+bot.set_trainer(ListTrainer) # Treinamento
 bot.train(conversa1)
 bot.train(conversa2)
 bot.train(conversa3)
@@ -47,7 +48,7 @@ bot.train(conversa4)
 bot.train(conversa5)
 bot.train(conversa6)
 
-while True:
+while True: # Loop para conversa
     pergunta = input("Usuário:")
     resposta = bot.get_response(pergunta)
     if float(resposta.confidence) > 0.5:
